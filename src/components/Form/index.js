@@ -3,6 +3,8 @@ import {
   View,
   Text,
   TextInput,
+  Pressable,
+  Keyboard,
   TouchableOpacity,
   Vibration,
 } from "react-native";
@@ -56,31 +58,42 @@ export default function Form() {
 
   return (
     <View style={styles.formContext}>
-      <View style={styles.form}>
-        <Text style={styles.formLabel}>Altura</Text>
-        <Text style={styles.errorMessage}>{errorMessage}</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setHeight}
-          value={height}
-          keyboardType="numeric"
-        />
-        <Text style={styles.formLabel}>Peso</Text>
-        <Text style={styles.errorMessage}>{errorMessage}</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={setWeight}
-          value={weight}
-          keyboardType="numeric"
-        />
-        <TouchableOpacity
-          style={styles.buttonCalculator}
-          onPress={() => validationImc()}
-        >
-          <Text style={styles.textButtonCalculator}>{textButton}</Text>
-        </TouchableOpacity>
-      </View>
-      <ResultImc messageResultImc={messageImc} resultImc={imc} />
+      {imc == null ? (
+        <Pressable onPress={Keyboard.dismiss} style={styles.form}>
+          <Text style={styles.formLabel}>Altura</Text>
+          <Text style={styles.errorMessage}>{errorMessage}</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setHeight}
+            value={height}
+            keyboardType="numeric"
+          />
+          <Text style={styles.formLabel}>Peso</Text>
+          <Text style={styles.errorMessage}>{errorMessage}</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={setWeight}
+            value={weight}
+            keyboardType="numeric"
+          />
+          <TouchableOpacity
+            style={styles.buttonCalculator}
+            onPress={() => validationImc()}
+          >
+            <Text style={styles.textButtonCalculator}>{textButton}</Text>
+          </TouchableOpacity>
+        </Pressable>
+      ) : (
+        <View style={styles.exhibitionResultImc}>
+          <ResultImc messageResultImc={messageImc} resultImc={imc} />
+          <TouchableOpacity
+            style={styles.buttonCalculator}
+            onPress={() => validationImc()}
+          >
+            <Text style={styles.textButtonCalculator}>{textButton}</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }

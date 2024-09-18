@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   numberImc: {
-    fontSize: 18,
+    fontSize: 48,
     color: "#FF0043",
     fontWeight: "bold",
   },
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
   },
   sharedText: {
-    color: "ffffff",
+    fontSize: 18,
+    color: "white",
     fontWeight: "bold",
     paddingHorizontal: 30,
   },
